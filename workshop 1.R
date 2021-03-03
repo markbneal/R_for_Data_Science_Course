@@ -1,14 +1,18 @@
 # Workshop 1, R for data science 2021
 
+
+#install.packages("tidyverse") #once only, if required
+
 library(tidyverse)
 
-#install.packages("tidyverse")
+# Slides
+#https://rpubs.com/markbneal/732217
 
-s <- livecode::serve_file(bitly=FALSE) 
-system(paste0("c:\\ngrok http ", s$url), wait = FALSE, invisible = FALSE,
-       show.output.on.console = FALSE, minimized = FALSE)
+## Instructor only!
+# s <- livecode::serve_file(bitly=FALSE) 
+# system(paste0("c:\\ngrok http ", s$url), wait = FALSE, invisible = FALSE,
+#        show.output.on.console = FALSE, minimized = FALSE)
 # http://f2373f871a9c.ngrok.io 
-
 
 mpg
 
