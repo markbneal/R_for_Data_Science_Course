@@ -1,5 +1,9 @@
 # experimental stats resources
 
+# Basic intro stats with R (aimed at Psych students and other beginners)
+# https://learningstatisticswithr.com/book/
+
+
 # Stat for Biology (Onofri)
 # https://www.statforbiology.com/_statbook/index.html
 # And her blog:
