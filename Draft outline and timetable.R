@@ -27,8 +27,8 @@ Wrangle ----
 11 Data import
 # WS 5 [W, 17/3]
 12 Tidy data
+# WS 6 [F 19/3]
 13 Relational data
-# WS 6 [F 19/3] (includes half of Relational that we won't get through previous WS)
 14 Strings
 # WS 7 [W 24/3]
 15 Factors
