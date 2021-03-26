@@ -213,6 +213,10 @@ afternoon_example
 evening_example <- ymd_hms("20200201 20:01:00")
 evening_example
 
+
+date_times <- as_tibble(c(morning_example, afternoon_example, evening_example))
+date_times  
+  
 # hour(morning_example) < 12
 # "good morning"
 # hour(morning_example) < 17
@@ -221,14 +225,16 @@ evening_example
 # "good evening"
 
 greeting <- function(x) {
-  if (hour(x) < 12) {
+  if_else (hour(x) < 12) {
     return("good morning")
-  } else if (hour(x) < 17) {
+  } else if_else (hour(x) < 17) {
     return("good afternoon")
   } else {
     return("good evening")
   }
 }
+
+?if_else
 
 greeting(morning_example)
 greeting(afternoon_example)
@@ -283,7 +289,7 @@ sum(x, na.rm = TRUE)
 
 show_missings <- function(df) {
   n <- sum(is.na(df))
-  cat("Missing values: ", n, "\n", sep = "")
+  cat("Missing values: ", n, sep = "")
   
   invisible(df)
 }
@@ -294,4 +300,19 @@ mtcars %>%
 library(nycflights13)
 
 flights %>% 
-  show_missings() %>% 
+  show_missings() 
+
+#environment
+
+toy_function <- function(x) {
+  x + y
+}
+
+# lexical scoping
+
+toy_function(10)
+
+df
+
+toy_function(df$a)
+greeting(date_times$value)
