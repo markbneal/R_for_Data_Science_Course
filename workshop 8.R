@@ -213,21 +213,20 @@ afternoon_example
 evening_example <- ymd_hms("20200201 20:01:00")
 evening_example
 
-
 date_times <- as_tibble(c(morning_example, afternoon_example, evening_example))
 date_times  
   
-# hour(morning_example) < 12
-# "good morning"
+hour(morning_example) < 12
+"good morning"
 # hour(morning_example) < 17
 # "good afternoon"
 # else
 # "good evening"
 
 greeting <- function(x) {
-  if_else (hour(x) < 12) {
+  if (hour(x) < 12) {
     return("good morning")
-  } else if_else (hour(x) < 17) {
+  } else if (hour(x) < 17) {
     return("good afternoon")
   } else {
     return("good evening")
@@ -315,4 +314,47 @@ toy_function(10)
 df
 
 toy_function(df$a)
-greeting(date_times$value)
+
+# Stacey's question, is "greeting" function going to calculate ####---------------
+# for each value in the vector provided?
+# i.e., if vector supplied has 3 objects, will output have 3 outputs?
+
+library(tidyverse)
+library(lubridate)
+
+morning_example <- ymd_hms("20200201 10:30:00")
+morning_example
+
+afternoon_example <- ymd_hms("20200201 12:01:00")
+afternoon_example
+
+evening_example <- ymd_hms("20200201 20:01:00")
+evening_example
+
+date_times <- as_tibble(c(morning_example, afternoon_example, evening_example))
+date_times  
+
+#greeting function
+greeting <- function(x) {
+  if (hour(x) < 12) {
+    return("good morning")
+  } else if (hour(x) < 17) {
+    return("good afternoon")
+  } else {
+    return("good evening")
+  }
+}
+
+#does it work?
+
+greeting(date_times$value) # this is not vectorised, uses only first value
+
+greeting_vectorised <- function(x) {
+  if_else( (hour(x) < 12), "good morning", 
+           if_else( (hour(x) < 17), "good afternoon", "good evening") 
+          )
+}
+
+?if_else
+
+greeting_vectorised(date_times$value) #three outputs
