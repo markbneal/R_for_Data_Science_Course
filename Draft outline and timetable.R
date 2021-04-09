@@ -48,31 +48,31 @@ Model ----
 # WS 11 [F, 9/4]
 22 Introduction
 23 Model basics
-# WS 12 [W, 14/4]+R
+# WS 12 [W, Now 21/4
 24 Model building
-# WS 13 [F, 16/4]
+# WS 13 [F, Now 23/4
 25 Many models
 
 Communicate ----
-# WS 15 (part 1)[F, 23/4]
+# WS 15 (part 1)[F, Now 7/5
 26 Introduction
 27 R Markdown
-# WS 14 (deliberately out of order)[W, 21/4]
+# WS 14 (deliberately out of order)[W, Now 5/5
 28 Graphics for communication
-# WS 15 (part 2)[F, 23/4]
+# WS 15 (part 2)[F, Now 7/5
 29 R Markdown formats
 30 R Markdown workflow
 
 End of the Data Science Part
 
-# WS 16 [W, 28/4]
+# WS 16 [W, Now 19/5
 Working with github to find, re-use, version control, collaborate on and store code
 
-# WS 17 [F, 30/4]
+# WS 17 [F, Now 21/5
 Finding data in our data warehouse (Snowflake), getting it out to use, and putting it in if required.
 
-# WS 18 [W, 5/5]+D
+# WS 18 [W, Now 26/5
 Experimental stats 1
 
-# WS 19 [F, 7/5]+D
+# WS 19 [F, Now 28/5
 Experimental stats 2
