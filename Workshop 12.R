@@ -244,16 +244,45 @@ daily %>%
 
 #Hurricanes and Himmicanes
 
+# See https://theoreticalecology.wordpress.com/2021/04/17/hurricanes-and-himmicanes-revisited-with-dharma/
+# and this https://www.theguardian.com/science/grrlscientist/2014/jun/04/hurricane-gender-name-bias-sexism-statistics
+
+# I've copied some code from the first link, but 
+# then fitted the quadratic term suggested by the second link.
+# It uses a slightly different coding approach to what we have done in this workshop,
+# but you should find the residual graphs informative - 
+# including a quadratic term for the damage sets off less alarms! 
+
+# If you are familiar with the summary output of regression,
+# you'll see that the quadratic term for damage is highly significant, and 
+# the model with quadratic is probably to be preferred (lower AIC and BIC)
+# Learn a bit about AIC here: 
+# https://www.scribbr.com/statistics/akaike-information-criterion/#:~:text=Lower%20AIC%20scores%20are%20better,be%20the%20better%2Dfit%20model.
+
+
 #install.packages("DHARMa")
+
+#Not working, not sure why
 #install.packages("gdata")
-library(gdata)
-Data = read.xls("http://www.pnas.org/content/suppl/2014/05/30/1402786111.DCSupplemental/pnas.1402786111.sd01.xlsx", 
-                nrows = 92, as.is = TRUE)
+#library(gdata)
+#Data = read.xls("http://www.pnas.org/content/suppl/2014/05/30/1402786111.DCSupplemental/pnas.1402786111.sd01.xlsx", 
+#                nrows = 92, as.is = TRUE)
+
+library(readxl)
+#not working, file.download appears to save corrupt version?
+#data_url <- "http://www.pnas.org/content/suppl/2014/05/30/1402786111.DCSupplemental/pnas.1402786111.sd01.xlsx"
+#download.file(data_url, "hurricane data.xlsx")
+#Data = read_xlsx("hurricane data.xlsx", range = "A1:N93")
+
+#Going to website direct and saving on computer first
+file_downloaded <- "pnas.1402786111.sd01.xlsx"
+Data <-  read_xlsx(file_downloaded, range = "A1:N93")
 
 library(glmmTMB)
-originalModelGAM = glmmTMB(alldeaths ~ scale(MasFem) * 
-                             (scale(Minpressure_Updated.2014) + scale(NDAM)), 
+originalModelGAM <-  glmmTMB(alldeaths ~ scale(MasFem) * 
+                             (scale(`Minpressure_Updated 2014`) + scale(NDAM)), #label updated for minpressure
                            data = Data, family = nbinom2)
+summary(originalModelGAM)
 
 # Residual checks with DHARMa
 library(DHARMa)
@@ -265,6 +294,19 @@ plot(res)
 plotResiduals(res, Data$NDAM)
 
 # we also find temporal autocorrelation
-res2 = recalculateResiduals(res, group = Data$Year)
+res2 <-  recalculateResiduals(res, group = Data$Year)
 testTemporalAutocorrelation(res2, time = unique(Data$Year))
+
+#Now try with quadratic term for damage (added by MN)
+ModelGAM_with_quadratic <-  glmmTMB(alldeaths ~ scale(MasFem) * 
+                             (scale(`Minpressure_Updated 2014`) + scale(NDAM) + I(scale(NDAM)^2)), #label updated for minpressure
+                           data = Data, family = nbinom2)
+
+summary(ModelGAM_with_quadratic)
+
+res_quad <- simulateResiduals(ModelGAM_with_quadratic)
+plot(res_quad)
+
+plotResiduals(res_quad, Data$NDAM)
+
 
