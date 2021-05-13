@@ -1,0 +1,24 @@
+---
+title: "CV"
+author: "Mark Neal"
+date: "07/05/2021"
+output: html_document
+---
+
+# Mark Neal
+
+## Skills
+
+* Awesome at **R**
+
+* Knows heaps of *stuff*
+
+## Education
+
+1. School of Hard Knocks
+
+2. [University of Life](http://www.universityoflife.com)
+
+## Other stuff
+
+* Enjoys **Snowboarding**

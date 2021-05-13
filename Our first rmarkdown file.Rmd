@@ -1,0 +1,119 @@
+---
+title: "Untitled"
+author: "me"
+date: "07/05/2021"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+#chunk options
+knitr::opts_chunk$set(echo = TRUE)
+
+#packages to load
+library(tidyverse)
+
+#number formats
+comma <- function(x) format(x, digits=2, big.mark = ",")
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+echo = false
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+default (echo = true)
+
+```{r pressure2}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Text formatting
+
+*italic text will be in here* or *italic*
+
+**bold text in here** or **bold**
+
+`code will be in here`
+
+superscript^2^ and subscript~2~
+
+## Headings
+
+# 1st level header
+
+## 2nd level header
+
+### 3rd level header
+
+## Lists
+
+-   bulleted item 1
+
+-   item 2
+
+    -   Item 2a
+    -   Item 2b
+
+1.  Numbered list item 1
+2.  Item 2. Numbers are automatically icremented in the output
+
+## Links and images
+
+<http://www.dairynz.co.nz>
+
+You can find the solution [here](http://www.dairynz.co.nz)
+
+![optional caption text](https://imgur.com/gallery/T40WL)
+
+<!-- Hey my image link didn't work, exercise for the reader -->
+
+<!-- text turns to comments with same shortcut as for scripts, 
+Ctrl+Shift+c-->
+
+Inline code shown here `code(data)`
+
+Inline equation in the middle of a sentence (eg $tau$)
+
+Three ways to insert a code chunk
+
+1.  keyboard shortcut (Ctrl+Alt+I)
+2.  Insert button
+3.  by manually delimiting `{r chunkname} and to close`
+
+```{r table}
+mtcars[1:5,]
+```
+
+```{r table}
+knitr::kable(
+  mtcars[1:5,],
+  caption = "A knitr kable"
+)
+
+#gt() #grammar of tables (tidyverse-style)
+#DT #stands for data table
+
+```
+
+## Inline code
+
+Sometimes you want numbers in your text that come from code. There were `r nrow(mtcars)` cars.
